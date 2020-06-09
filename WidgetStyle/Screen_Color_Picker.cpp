@@ -1,6 +1,7 @@
 #include "Screen_Color_Picker.h"
 #include "ui_Screen_Color_Picker.h"
 #include <QDesktopWidget>
+#include <QPainter>
 
 Screen_Color_Picker::Screen_Color_Picker(QWidget *parent) :
     QDialog(parent),
@@ -8,6 +9,7 @@ Screen_Color_Picker::Screen_Color_Picker(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowFlag(Qt::FramelessWindowHint);
+    this->setAttribute(Qt::WA_TranslucentBackground);
     m_Scree_Size = QApplication::desktop()->size();
     this->setFixedSize(m_Scree_Size.width()/5,m_Scree_Size.height()/3);
     this->move(m_Scree_Size.width()-this->width(), m_Scree_Size.height()-this->height());
@@ -22,9 +24,9 @@ void Screen_Color_Picker::setPosition(ENUM_WINDOW_POSITION position)
 {
     m_Position = position;
     switch (position) {
-    case E_LEFT_TOP:
+    case E_RIGHT_TOP:
     {
-        this->move(0,0);
+        this->move(m_Scree_Size.width()-this->width(),0);
         break;
     }
     case E_RIGHT_BOTTOM:
@@ -44,15 +46,21 @@ void Screen_Color_Picker::enterEvent(QEvent *event)
 {
     ENUM_WINDOW_POSITION position = getPosition();
     switch (position) {
-    case E_LEFT_TOP:
+    case E_RIGHT_TOP:
     {
         setPosition(E_RIGHT_BOTTOM);
         break;
     }
     case E_RIGHT_BOTTOM:
     {
-        setPosition(E_LEFT_TOP);
+        setPosition(E_RIGHT_TOP);
         break;
     }
     }
+}
+
+void Screen_Color_Picker::paintEvent(QPaintEvent *event)
+{
+    QPainter p(this);
+    p.fillRect(this->rect(),QColor(0,0,0,100));
 }
