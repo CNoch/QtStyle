@@ -1,2 +1,10 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>img/笔 (1).png</file>
+        <file>img/笔 (2).png</file>
+        <file>img/笔.png</file>
+        <file>img/关  闭 (1).png</file>
+        <file>img/关  闭 (2).png</file>
+        <file>img/关  闭.png</file>
+    </qresource>
+</RCC>

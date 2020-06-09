@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QPaintEvent>
+#include "Screen_Color_Picker.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -17,6 +18,7 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+    //
     void InitWindows();
 
 protected:
@@ -26,10 +28,15 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
 private slots:
-    void on_pushButton_clicked();
+
+    void on_pushButton_close_clicked();
+
+    void on_pushButton_color_picker_clicked();
 
 private:
     Ui::Widget *ui;
+
+    Screen_Color_Picker *m_Screen_Color_Picker = nullptr;
 
     QPoint m_InitialPoint;  //初始点坐标
     bool m_InitialPoint_bool = false;//鼠标点击主窗口标识

@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <QPainter>
+#include "Screen_Color_Picker.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -25,7 +26,7 @@ void Widget::InitWindows()
 void Widget::paintEvent(QPaintEvent *event)
 {
     QPainter p(this);
-    p.fillRect(this->rect(),QColor(0,0,0,100));
+    p.fillRect(this->rect(),QColor(0,0,0,50));
 }
 
 void Widget::mouseMoveEvent(QMouseEvent *event)
@@ -51,7 +52,15 @@ void Widget::mouseReleaseEvent(QMouseEvent *event)
 }
 
 
-void Widget::on_pushButton_clicked()
+
+void Widget::on_pushButton_close_clicked()
 {
     close();
+}
+
+void Widget::on_pushButton_color_picker_clicked()
+{
+    if (m_Screen_Color_Picker == nullptr)
+        m_Screen_Color_Picker = new Screen_Color_Picker(this);
+    m_Screen_Color_Picker->show();
 }
