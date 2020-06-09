@@ -25,8 +25,8 @@ void Widget::InitWindows()
 
 void Widget::paintEvent(QPaintEvent *event)
 {
-    QPainter p(this);
-    p.fillRect(this->rect(),QColor(0,0,0,50));
+    //QPainter p(this);
+    //p.fillRect(this->rect(),QColor(0,0,0,50));
 }
 
 void Widget::mouseMoveEvent(QMouseEvent *event)
